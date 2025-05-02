@@ -6,6 +6,7 @@ Shader "Custom/Shader01"
         _MaxDistance("Max distance", float) = 100
         _StepSize("Step size", Range(0.1, 20)) = 1
         _DensityMultiplier ("Density multiplier", Range(0, 10)) = 1
+        _NoiseOffset("Noise offset", float) = 0
     }
     
     SubShader
@@ -26,6 +27,7 @@ Shader "Custom/Shader01"
             float _MaxDistance;
             float _DensityMultiplier;
             float _StepSize;
+            float _NoiseOffset;
             
             float get_density()
             {
@@ -42,12 +44,13 @@ Shader "Custom/Shader01"
                 float3 viewDir = worldPos - _WorldSpaceCameraPos;
                 float viewLength = length(viewDir);
                 float3 rayDir = normalize(viewDir);
-
-                float distanceLimit = min(viewLength, _MaxDistance);
-                float distTravelled = 0;
+                
+                float2 pixelCoords = IN.texcoord * _BlitTexture_TexelSize.zw;
+                float distLimit = min(viewLength, _MaxDistance);
+                float distTravelled = InterleavedGradientNoise(pixelCoords, (int)(_Time.y / max(HALF_EPS, unity_DeltaTime.x))) * _NoiseOffset;
                 float transmittance = 1;
 
-                while (distTravelled < distanceLimit)
+                while (distTravelled < distLimit)
                 {
                     float density = get_density();
                     if (density > 0)
