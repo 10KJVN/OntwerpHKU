@@ -4,7 +4,7 @@ public class FireController : MonoBehaviour
 {
     public ParticleSystem fireParticles;
     public Light fireLight;
-    public AudioSource fireAudio;
+   // public AudioSource fireAudio;
     public float timeUntilExtinguish = 10f;
     private float timer;
     private bool isExtinguished;
@@ -22,7 +22,7 @@ public class FireController : MonoBehaviour
     {
         fireParticles.Stop();
         fireLight.enabled = false;
-        fireAudio.Stop();
+        //fireAudio.Stop();
         isExtinguished = true;
         // Optional: trigger een doel of hint voor speler
     }
