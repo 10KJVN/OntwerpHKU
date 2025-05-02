@@ -5,6 +5,8 @@ public class FireflyManager : MonoBehaviour
 {
     public GameObject[] fireflySequence; // Sleep 7 prefab instances in juiste volgorde in de Inspector
     public float gameTime = 50f;
+    
+    [SerializeField] private FireflyUIManager uiManager;
 
     private int currentIndex = 0;
     private float timer;
@@ -29,13 +31,9 @@ public class FireflyManager : MonoBehaviour
 
         timer -= Time.deltaTime;
 
-        // Alleen loggen 1x per seconde
-        logTimer += Time.deltaTime;
-        if (logTimer >= 1f)
-        {
-            logTimer = 0f;
-            Debug.Log($"Time Remaining: {Mathf.CeilToInt(timer)} seconds");
-        }
+        // UI bijwerken elke frame
+        if (uiManager != null)
+            uiManager.UpdateTimer(timer);
 
         if (timer <= 0f)
         {
@@ -44,13 +42,15 @@ public class FireflyManager : MonoBehaviour
         }
     }
 
+
     public void FireflyCollected()
     {
         fireflySequence[currentIndex].SetActive(false);
         currentIndex++;
 
-        Debug.Log($"Fireflies Collected: {currentIndex}/{fireflySequence.Length}");
-        
+        if (uiManager != null)
+            uiManager.UpdateFireflyCount(currentIndex, fireflySequence.Length);
+
         if (currentIndex < fireflySequence.Length)
         {
             ActivateNextFirefly();
@@ -58,10 +58,10 @@ public class FireflyManager : MonoBehaviour
         else
         {
             gameActive = false;
-            Debug.Log("All fireflies collected!");
-            // TODO: Trigger win state
+            Debug.Log("All fireflies collected! YOU WIN!");
         }
     }
+
 
     void ActivateNextFirefly()
     {
