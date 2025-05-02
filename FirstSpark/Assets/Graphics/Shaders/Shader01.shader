@@ -45,19 +45,19 @@ Shader "Custom/Shader01"
 
                 float distanceLimit = min(viewLength, _MaxDistance);
                 float distTravelled = 0;
-                float transmittance = 0;
+                float transmittance = 1;
 
                 while (distTravelled < distanceLimit)
                 {
                     float density = get_density();
                     if (density > 0)
                     {
-                        transmittance += density * _StepSize;
+                        transmittance *= exp(-density * _StepSize);
                     }
                     distTravelled += _StepSize;
                 }
                 
-                return lerp(col, _Color, saturate(transmittance));
+                return lerp(col, _Color, 1.0 - saturate(transmittance));
 
                 return float4 (frac(worldPos), 1);
             }
