@@ -51,7 +51,7 @@ Shader "Custom/Shader01"
             
             float get_density(float3 worldPos)
             {
-                float4 noise = _FogNoise.Sample(sampler_TrilinearRepeat, worldPos * 0.01 * _NoiseTiling, 0);
+                float4 noise = _FogNoise.SampleLevel(sampler_TrilinearRepeat, worldPos * 0.01 * _NoiseTiling, 0);
                 float density = dot(noise, noise);
                 density = saturate(density - _DensityThreshold) * _DensityMultiplier;
                 return density;
@@ -73,11 +73,15 @@ Shader "Custom/Shader01"
                 float distTravelled = InterleavedGradientNoise(pixelCoords, (int)(_Time.y / max(HALF_EPS, unity_DeltaTime.x))) * _NoiseOffset;
                 float transmittance = 1;
                 float4 fogCol = _Color;
-
-                while (distTravelled < distLimit)
+                
+                int maxSteps = (int)(_MaxDistance / _StepSize);
+                for (int i = 0; i < maxSteps; ++i)
                 {
+                    if (distTravelled >=distLimit) break;
+
                     float3 rayPos = entryPoint + rayDir * distTravelled;
                     float density = get_density(rayPos);
+
                     if (density > 0)
                     {
                         Light mainLight = GetMainLight(TransformWorldToShadowCoord(rayPos));
