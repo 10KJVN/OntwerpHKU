@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SimpleDialogueTrigger : MonoBehaviour
 {
@@ -13,8 +14,17 @@ public class SimpleDialogueTrigger : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            dialogueTextObject.SetActive(true);
+            StartCoroutine(ShowAndHide());
+
             hasTriggered = true;
         }
     }
+    
+    private IEnumerator ShowAndHide()
+    {
+        dialogueTextObject.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        dialogueTextObject.SetActive(false);
+    }
+
 }
