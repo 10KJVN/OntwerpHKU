@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa82a0a17f8fb543bf78960a2c4de35, type: 3}
   m_Name: VolumetricFogEffect
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   stepSize:
     m_OverrideState: 1
     m_Value: 1

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1674463325516605648}
   - component: {fileID: 488423334064261199}
   - component: {fileID: 5672676102330537331}
+  - component: {fileID: 4263350088336051180}
   m_Layer: 0
   m_Name: FireFly
   m_TagString: Untagged
@@ -145,3 +146,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
+--- !u!114 &4263350088336051180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763774939279536546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4856ce864847d409538ca972b43f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatStrength: 0.5
+  speed: 1
+  noiseAmplitude: 0.2
+  noiseSpeed: 1

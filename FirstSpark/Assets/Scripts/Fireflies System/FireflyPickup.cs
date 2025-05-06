@@ -16,9 +16,6 @@ public class FireflyPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //RespawnManager.Instance.UpdateCheckpoint(transform.position);
-            //Destroy(gameObject);
-            
             if (collectEffect != null)
                 Instantiate(collectEffect, transform.position, Quaternion.identity);
 
@@ -26,6 +23,8 @@ public class FireflyPickup : MonoBehaviour
                 AudioSource.PlayClipAtPoint(collectSound, transform.position);
 
             manager.FireflyCollected();
+
+            Destroy(gameObject); // <-- Firefly verdwijnt na pickup
         }
     }
 }
