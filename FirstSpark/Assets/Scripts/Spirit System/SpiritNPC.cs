@@ -3,23 +3,68 @@ using System.Collections;
 
 public class SpiritNPC : MonoBehaviour
 {
-    public GameObject fadeOutEffect;
+    [SerializeField] private GameObject fadeOutEffect;
+    [SerializeField] private GameObject interactText;
+
+    private bool isPlayerInRange = false;
     private bool isActivated = false;
 
-    private void OnTriggerStay(Collider other)
+    private void Start()
     {
-        if (!isActivated && other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        if (interactText != null)
+            interactText.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (isPlayerInRange && !isActivated && Input.GetKeyDown(KeyCode.E))
         {
-            isActivated = true;
-            SpiritManager.Instance.SpiritFound();
-            StartCoroutine(FadeAndDestroy());
+            InteractWithSpirit();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInRange = true;
+
+            if (!isActivated && interactText != null)
+                interactText.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInRange = false;
+
+            if (interactText != null)
+                interactText.SetActive(false);
+        }
+    }
+
+    private void InteractWithSpirit()
+    {
+        isActivated = true;
+
+        if (interactText != null)
+            interactText.SetActive(false);
+
+        // Trigger progress
+        SpiritManager.Instance.SpiritFound();
+
+        StartCoroutine(FadeAndDestroy());
     }
 
     private IEnumerator FadeAndDestroy()
     {
-        if (fadeOutEffect) fadeOutEffect.SetActive(true);
-        yield return new WaitForSeconds(2f); // of afhankelijk van je effect
+        if (fadeOutEffect != null)
+            fadeOutEffect.SetActive(true);
+
+        yield return new WaitForSeconds(2f); // duur fade effect
+
         Destroy(gameObject);
     }
 }
