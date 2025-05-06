@@ -8,16 +8,32 @@ public class SpiritManager : MonoBehaviour
     public GameObject mistBarrier;
     public GameObject playerGlow;
 
-    private void Awake() => Instance = this;
+    private MistController mistController;
+
+    private void Awake()
+    {
+        Instance = this;
+        if (mistBarrier != null)
+            mistController = mistBarrier.GetComponent<MistController>();
+    }
 
     public void SpiritFound()
     {
         spiritsFound++;
         if (spiritsFound >= requiredSpirits)
         {
-            mistBarrier.SetActive(false); // of fade out
-            playerGlow.SetActive(true);   // emissive glow object/FX
+            playerGlow.SetActive(true); // emissive glow op borst
+
+            if (mistController != null)
+            {
+                mistController.StartFade(); // fade de shader uit
+                // Optioneel: Destroy na fade
+                Destroy(mistBarrier, 4f);
+            }
+            else
+            {
+                mistBarrier.SetActive(false); // fallback als mistController mist
+            }
         }
     }
 }
-
