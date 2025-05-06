@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
@@ -8,6 +9,7 @@ public class VolumetricFogFeature : ScriptableRendererFeature
     class VolumetricFogPass : ScriptableRenderPass
     {
         private Material fogMaterial;
+        private VolumeComponent fogEffect;
 
         public VolumetricFogPass(Material material)
         {
@@ -47,12 +49,27 @@ public class VolumetricFogFeature : ScriptableRendererFeature
 
         //private class PassData { }
         
+        [Obsolete("This rendering path is for compatibility mode only (when Render Graph is disabled). Use Render Graph API instead.", false)]
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
+            //Get active volume stack for current camera
             var stack = VolumeManager.instance.stack;
             var volume = stack.GetComponent<VolumetricFogEffect>();
             if (volume == null || !volume.IsActive()) return;
-
+            
+            ApplyFogEffect(volume);
+            
+            // Get the camera color target and perform a Blit
+            var cameraColor = renderingData.cameraData.renderer.cameraColorTargetHandle;
+            CommandBuffer cmd = CommandBufferPool.Get("VolumetricFogPass");
+            cmd.SetRenderTarget(cameraColor);
+            cmd.Blit(cameraColor, cameraColor, fogMaterial);
+            context.ExecuteCommandBuffer(cmd);
+            CommandBufferPool.Release(cmd);
+        }
+        
+        private void ApplyFogEffect(VolumetricFogEffect volume)
+        {
             // Set shader properties
             fogMaterial.SetFloat("_StepSize", volume.stepSize.value);
             fogMaterial.SetFloat("_MaxDistance", volume.maxDistance.value);
@@ -64,14 +81,6 @@ public class VolumetricFogFeature : ScriptableRendererFeature
             fogMaterial.SetFloat("_DensityThreshold", volume.densityThreshold.value);
             fogMaterial.SetColor("_LightContribution", volume.lightContribution.value);
             fogMaterial.SetFloat("_LightScattering", volume.lightScattering.value);
-
-            // Get the camera color target and perform a Blit
-            var cameraColor = renderingData.cameraData.renderer.cameraColorTargetHandle;
-            CommandBuffer cmd = CommandBufferPool.Get("VolumetricFogPass");
-            cmd.SetRenderTarget(cameraColor);
-            cmd.Blit(cameraColor, cameraColor, fogMaterial);
-            context.ExecuteCommandBuffer(cmd);
-            CommandBufferPool.Release(cmd);
         }
     }
 

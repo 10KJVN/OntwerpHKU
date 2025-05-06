@@ -15,35 +15,35 @@ MonoBehaviour:
   active: 1
   stepSize:
     m_OverrideState: 1
-    m_Value: 1.5
+    m_Value: 0.1
   maxDistance:
     m_OverrideState: 1
-    m_Value: 60
+    m_Value: 10
   fogColor:
     m_OverrideState: 1
-    m_Value: {r: 0.41568628, g: 0.5372549, b: 0.654902, a: 1}
+    m_Value: {r: 0.15891333, g: 0.7169812, b: 0.09807763, a: 1}
   densityMultiplier:
     m_OverrideState: 1
-    m_Value: 0.15
+    m_Value: 0.1
   noiseOffset:
     m_OverrideState: 1
-    m_Value: 0.85
+    m_Value: -8.1
   fogNoise:
     m_OverrideState: 1
     m_Value: {fileID: 11700000, guid: dccd188be5295294e95e1c157bbf5a27, type: 2}
     dimension: 1
   noiseTiling:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.59
   densityThreshold:
     m_OverrideState: 1
     m_Value: 0.1
   lightContribution:
     m_OverrideState: 1
-    m_Value: {r: 0.7058824, g: 0.7058824, b: 1, a: 1}
+    m_Value: {r: 0, g: 0.26553044, b: 0.26553044, a: 1}
   lightScattering:
     m_OverrideState: 1
-    m_Value: 0.181
+    m_Value: 0.014
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

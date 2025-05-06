@@ -112,50 +112,6 @@ MonoBehaviour:
   bladeRotation:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &-4200969984732679387
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa82a0a17f8fb543bf78960a2c4de35, type: 3}
-  m_Name: VolumetricFogEffect
-  m_EditorClassIdentifier: 
-  active: 1
-  stepSize:
-    m_OverrideState: 0
-    m_Value: 1
-  maxDistance:
-    m_OverrideState: 0
-    m_Value: 100
-  fogColor:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  densityMultiplier:
-    m_OverrideState: 0
-    m_Value: 1
-  noiseOffset:
-    m_OverrideState: 0
-    m_Value: 0
-  fogNoise:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-    dimension: 1
-  noiseTiling:
-    m_OverrideState: 0
-    m_Value: 1
-  densityThreshold:
-    m_OverrideState: 0
-    m_Value: 0.1
-  lightContribution:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  lightScattering:
-    m_OverrideState: 0
-    m_Value: 0.2
 --- !u!114 &-1530867784153373626
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -243,7 +199,7 @@ MonoBehaviour:
   - {fileID: 3042515772969593753}
   - {fileID: -4347201760489380102}
   - {fileID: -7728867496591164840}
-  - {fileID: -4200969984732679387}
+  - {fileID: 6463768507720952690}
 --- !u!114 &3042515772969593753
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -272,3 +228,47 @@ MonoBehaviour:
   saturation:
     m_OverrideState: 1
     m_Value: 10
+--- !u!114 &6463768507720952690
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa82a0a17f8fb543bf78960a2c4de35, type: 3}
+  m_Name: VolumetricFogEffect
+  m_EditorClassIdentifier: 
+  active: 1
+  stepSize:
+    m_OverrideState: 0
+    m_Value: 1
+  maxDistance:
+    m_OverrideState: 0
+    m_Value: 100
+  fogColor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  densityMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  noiseOffset:
+    m_OverrideState: 0
+    m_Value: 0
+  fogNoise:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  noiseTiling:
+    m_OverrideState: 0
+    m_Value: 1
+  densityThreshold:
+    m_OverrideState: 0
+    m_Value: 0.1
+  lightContribution:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  lightScattering:
+    m_OverrideState: 0
+    m_Value: 0.2

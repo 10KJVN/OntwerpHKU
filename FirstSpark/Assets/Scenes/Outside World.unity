@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &32762767 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1763774939279536546, guid: 1a712f30dc3885c4992cbe85b9e1fa51, type: 3}
-  m_PrefabInstance: {fileID: 1489793605}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &75030585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1503,7 +1498,6 @@ MonoBehaviour:
   - {fileID: 1299884909}
   - {fileID: 1842146058}
   - {fileID: 2143035910}
-  - {fileID: 32762767}
   - {fileID: 1460597509}
   gameTime: 0
   uiManager: {fileID: 0}
@@ -2110,7 +2104,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4889,7 +4883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7926951135682780943, guid: 1a712f30dc3885c4992cbe85b9e1fa51, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.57
+      value: 2.5700002
       objectReference: {fileID: 0}
     - target: {fileID: 7926951135682780943, guid: 1a712f30dc3885c4992cbe85b9e1fa51, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4942,7 +4936,7 @@ GameObject:
   m_Layer: 6
   m_Name: URP Local Volume
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4962,7 +4956,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 10
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 08d088bf6e2937844a090d3df3f40395, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 63af513a661ca1f49bf1c4bf5601a580, type: 2}
 --- !u!4 &832575519
 Transform:
   m_ObjectHideFlags: 0
@@ -4972,7 +4966,7 @@ Transform:
   m_GameObject: {fileID: 832575517}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.83, z: 65.1}
+  m_LocalPosition: {x: 0, y: 2.83, z: 65.1}
   m_LocalScale: {x: 150, y: 20, z: 150}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6532,7 +6526,7 @@ GameObject:
   m_Layer: 0
   m_Name: URP Global Volume (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
