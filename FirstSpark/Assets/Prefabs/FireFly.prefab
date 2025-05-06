@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectEffect: {fileID: 4340957166169233356, guid: 4dd4499d0f29ded4e877d0b32999754c, type: 3}
-  collectSound: {fileID: 0}
+  collectSound: {fileID: 8300000, guid: 0cba64b6d8c59554f9d4ca792c284641, type: 3}
 --- !u!114 &4263350088336051180
 MonoBehaviour:
   m_ObjectHideFlags: 0

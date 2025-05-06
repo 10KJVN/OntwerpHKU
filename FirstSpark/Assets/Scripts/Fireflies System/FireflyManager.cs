@@ -7,15 +7,22 @@ public class FireflyManager : MonoBehaviour
     public float gameTime = 50f;
     
     [SerializeField] private FireflyUIManager uiManager;
+    //[SerializeField] private GameOverController gameOverController;
+    //[SerializeField] private GameObject gameOverScreen; // voeg dit toe
 
     private int currentIndex = 0;
     private float timer;
     private bool gameActive = false;
+    private bool gameHasEnded = false;
     private float logTimer = 0f;
 
     void Start()
     {
         DeactivateAll();
+        if (uiManager != null)
+            uiManager.HideGameOver(); // <- Zet het scherm uit bij het begin
+        //if (gameOverScreen != null)
+            //gameOverScreen.SetActive(false);
     }
 
     public void StartFireflyChallenge()
@@ -27,22 +34,49 @@ public class FireflyManager : MonoBehaviour
 
     void Update()
     {
-        if (!gameActive) return;
+        if (!gameActive)
+        {
+            // Toon UI één keer (nu comment je dat uit)
+            if (timer <= 0f && !gameHasEnded)
+            {
+                gameHasEnded = true;
 
+                // Deze twee regels uitzetten zolang er geen scherm is:
+                // if (uiManager != null)
+                //     uiManager.ShowGameOver();
+
+                // if (gameOverScreen != null)
+                //     gameOverScreen.SetActive(true);
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+
+            // Laat toetsen gewoon doorgaan
+            if (gameHasEnded)
+            {
+                if (Input.GetKeyDown(KeyCode.R))
+                    RestartGame();
+
+                if (Input.GetKeyDown(KeyCode.Q))
+                    QuitGame();
+            }
+
+            return;
+        }
+
+        // Actieve game logica
         timer -= Time.deltaTime;
 
-        // UI bijwerken elke frame
         if (uiManager != null)
             uiManager.UpdateTimer(timer);
 
         if (timer <= 0f)
         {
             gameActive = false;
-            Debug.Log("Time's up! YOU LOSE!");
         }
     }
-
-
+    
     public void FireflyCollected()
     {
         fireflySequence[currentIndex].SetActive(false);
@@ -61,8 +95,7 @@ public class FireflyManager : MonoBehaviour
             Debug.Log("All fireflies collected! YOU WIN!");
         }
     }
-
-
+    
     void ActivateNextFirefly()
     {
         fireflySequence[currentIndex].SetActive(true);
@@ -77,4 +110,21 @@ public class FireflyManager : MonoBehaviour
     }
 
     public float GetRemainingTime() => timer;
+    
+    void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void QuitGame()
+    {
+        Application.Quit();
+
+        // Dit werkt alleen in een build, niet in de editor:
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
+
 }
