@@ -16,6 +16,9 @@ public class FireflyPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //RespawnManager.Instance.UpdateCheckpoint(transform.position);
+            //Destroy(gameObject);
+            
             if (collectEffect != null)
                 Instantiate(collectEffect, transform.position, Quaternion.identity);
 

@@ -14,7 +14,7 @@ Shader "Custom/Shader01"
         
         [HDR] _LightContribution("Light contribution", Color) = (1, 1, 1, 1)
         _LightScattering("Light Scattering", Range(0, 1)) = 0.2
-        
+        _FogEnabled("Fog Enabled", Float) = 1
     }
     
     SubShader
@@ -43,6 +43,7 @@ Shader "Custom/Shader01"
             float _NoiseTiling;
             float4 _LightContribution;
             float _LightScattering;
+            float _FogEnabled;
 
             float henyey_greenstein(float angle, float scattering)
             {
@@ -60,6 +61,10 @@ Shader "Custom/Shader01"
             half4 frag(Varyings IN) : SV_Target
             {
                 float4 col = SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, IN.texcoord);
+                if (_FogEnabled < 0.5)
+                {
+                    return col; // Skip fog processing entirely
+                }
                 float depth = SampleSceneDepth(IN.texcoord);
                 float3 worldPos = ComputeWorldSpacePosition(IN.texcoord, depth, UNITY_MATRIX_I_VP);
 
