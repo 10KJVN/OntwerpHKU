@@ -424,7 +424,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 307531a4a537e9b4b81ead629b8ace64, type: 2}
+  - {fileID: 2100000, guid: 23d3889f4f367644da745274c43c3ca2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6832,6 +6832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1055559928}
   fireflyText: {fileID: 1668596920}
+  gameOverScreen: {fileID: 0}
 --- !u!4 &1168718765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4524737544125133855, guid: 4451e532546727f41a2315e69dd73e0c, type: 3}
@@ -7374,7 +7375,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 307531a4a537e9b4b81ead629b8ace64, type: 2}
+  - {fileID: 2100000, guid: 23d3889f4f367644da745274c43c3ca2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7537,7 +7538,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 307531a4a537e9b4b81ead629b8ace64, type: 2}
+  - {fileID: 2100000, guid: 23d3889f4f367644da745274c43c3ca2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

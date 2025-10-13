@@ -8,7 +8,7 @@ public class DeathZone : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            RespawnManager.Instance.RespawnPlayer(player);
+            //RespawnManager.Instance.RespawnPlayer(player);
         }
     }
 }

@@ -31,7 +31,7 @@ Material:
     m_Floats:
     - _DensityMultiplier: 0.15
     - _DensityThreshold: 0.276
-    - _FogEnabled: 1
+    - _FogEnabled: 0
     - _LightScattering: 0.175
     - _MaxDistance: 60
     - _NoiseOffset: 0.85
