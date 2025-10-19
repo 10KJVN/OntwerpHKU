@@ -29,14 +29,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DensityMultiplier: 0.5
-    - _DensityThreshold: 0.9
+    - _DensityMultiplier: 0.15
+    - _DensityThreshold: 0.276
     - _FogEnabled: 0
-    - _LightScattering: 1
-    - _MaxDistance: 100
+    - _LightScattering: 0.175
+    - _MaxDistance: 60
     - _NoiseOffset: 0.85
-    - _NoiseTiling: 5
-    - _StepSize: 2
+    - _NoiseTiling: 0.5
+    - _StepSize: 1.5
     m_Colors:
     - _Color: {r: 0.41568628, g: 0.5372549, b: 0.654902, a: 1}
     - _LightContribution: {r: 0.7058824, g: 0.7058824, b: 1, a: 1}
